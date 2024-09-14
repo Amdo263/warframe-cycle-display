@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Warframe Cetus Cycle</title>
+</head>
+<body>
+    <div id="cetus-cycle">
+        Loading Cetus cycle data...
+    </div>
+
+    <script>
+        fetch('https://api.warframestat.us/pc/cetusCycle')
+            .then(response => response.json())
+            .then(data => {
+                const cetusDiv = document.getElementById('cetus-cycle');
+                cetusDiv.innerHTML = `
+                    <h3>Cetus Cycle</h3>
+                    <p>Current State: ${data.state}</p>
+                    <p>Time Left: ${data.timeLeft}</p>
+                `;
+            })
+            .catch(error => {
+                document.getElementById('cetus-cycle').innerHTML = 'Failed to load data.';
+                console.error('Error fetching Cetus cycle data:', error);
+            });
+    </script>
+</body>
+</html>
