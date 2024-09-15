@@ -1,0 +1,11 @@
+fetch('https://api.warframestat.us/pc/voidTrader')
+  .then(response => response.json())
+  .then(data => {
+    document.getElementById('baro').innerHTML = `
+      <h2>Baro Ki'Teer Status</h2>
+      <p>Arrival: ${data.startString}</p>
+      <p>Location: ${data.location}</p>
+      <p>Inventory: ${data.inventory.length > 0 ? 'Available' : 'No Items'}</p>
+    `;
+  })
+  .catch(error => console.error('Error:', error));
